@@ -11,3 +11,6 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           src_repo: ADMSCentre/mortar
+          copy_assets: true
+          skip_draft: true
+          skip_prerelease: true
