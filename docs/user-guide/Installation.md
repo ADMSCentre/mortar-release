@@ -1,8 +1,12 @@
 # Installation Guide
 
+> [!WARNING]
+>
+> The application is currently **under development and may contain bugs or incomplete features**, and is intended to be shared with a limited audience for testing purposes. Please use the application with caution and report any issues or feedback to the development team.
+
 This document provides instructions on how to download and install Mortar on your computer. Mortar is a desktop application that is developed to view [Freedom of Information (FOI) documents](https://www.oaic.gov.au/freedom-of-information), as part of the [Designing Automated Tools to support Welfare Rights Advocacy](https://www.admscentre.org.au/designing-automated-tools-to-support-welfare-rights-advocacy/) project of the ARC Centre of Excellence for Automated Decision-Making and Society.
 
-The installer for Mortar is available for Windows, macOS, and Linux, available to download from the latest release [here](https://github.com/ADMSCentre/mortar-release/releases/latest).
+The installer for Mortar is available for Windows, macOS, and Linux, available to download from the latest release [**here**](https://github.com/ADMSCentre/mortar-release/releases/latest).
 
 > [!NOTE]
 >
