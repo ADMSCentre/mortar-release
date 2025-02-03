@@ -58,6 +58,10 @@ If you have an ARM64 processor, please download the appropriate version of Morta
 3. **Launch the Application**:
    - 🚀 Open the Applications folder and double-click the Mortar app to start it.
 
+> [!IMPORTANT]
+>
+> Since Mortar is not yet registered with Apple, you will need to temporarily override your security settings to open the application by following [this guide](https://support.apple.com/en-au/102445#openanyway).
+
 ### Linux
 1. **Download the AppImage**:
    - 📥 Download `Mortar-<version>.AppImage` from the release assets. 
