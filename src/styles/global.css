@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-accent-50: #fcf5f4;
+  --color-accent-100: #fae8e6;
+  --color-accent-200: #f6d6d2;
+  --color-accent-300: #efb9b2;
+  --color-accent-400: #e07f73;
+  --color-accent-500: #d66a5d;
+  --color-accent-600: #c14f41;
+  --color-accent-700: #a23f33;
+  --color-accent-800: #86382e;
+  --color-accent-900: #70332c;
+  --color-accent-950: #3c1813;
+}
+
+:root {
+  scrollbar-gutter: stable;
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl font-semibold mb-4;
+  }
+  h2 {
+    @apply text-3xl font-semibold mb-4;
+  }
+  h3 {
+    @apply text-2xl font-semibold mb-4;
+  }
+  ul {
+    @apply list-disc pl-4;
+  }
+  ol {
+    @apply list-decimal pl-4;
+  }
+}

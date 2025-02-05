@@ -70,4 +70,3 @@ If you have an ARM64 processor, please download the appropriate version of Morta
    - 🛠️ Run the command: `chmod +x Mortar-<version>.AppImage`
 3. **Run the AppImage**:
    - 🚀 Execute the AppImage by running: `./Mortar-<version>.AppImage`
-

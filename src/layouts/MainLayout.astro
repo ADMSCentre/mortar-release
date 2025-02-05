@@ -1,0 +1,52 @@
+---
+import 'remark-github-alerts/styles/github-colors-light.css';
+import 'remark-github-alerts/styles/github-colors-dark-class.css';
+// or
+// import "remark-github-alerts/styles/github-colors-dark-media.css"
+import 'remark-github-alerts/styles/github-base.css';
+import '../styles/global.css';
+
+import Header from '../components/Header.svelte';
+import background from '../assets/background.svg';
+
+import { twMerge } from 'tailwind-merge';
+import { withBase } from '@utils/path';
+
+type Props = {
+  class?: string;
+};
+
+const { class: className = '' } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href={withBase('/favicon.svg')} />
+    <meta name='generator' content={Astro.generator} />
+    <title>Mortar</title>
+  </head>
+  <body class='min-h-screen bg-black flex flex-col text-white'>
+    <Header />
+    <main class={twMerge('p-4 leading-loose flex-1', className)}>
+      <slot />
+    </main>
+    <img
+      class='fixed top-0 left-0 w-full h-full bg-white/5 -z-10 blur-[100px] pointer-events-none brightness-150'
+      src={background.src}
+      alt=''
+      fetchpriority='high'
+    />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

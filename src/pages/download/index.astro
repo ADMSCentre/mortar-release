@@ -1,0 +1,76 @@
+---
+import MainLayout from '@layouts/MainLayout.astro';
+import DownloadSelection from './download-selection.svelte';
+import LatestDownload from './latest-download.svelte';
+const READONLY_ACCESS_API_TOKEN = import.meta.env
+  .PUBLIC_GITHUB_API_READONLY_TOKEN;
+
+const latestResponse = await fetch(
+  'https://api.github.com/repos/admscentre/mortar-release/releases/latest',
+  {
+    headers: {
+      Authorization: `Bearer ${READONLY_ACCESS_API_TOKEN}`,
+    },
+  }
+);
+const data = await latestResponse.json();
+const latestRelease: Release = {
+  tag: data.tag_name,
+  name: data.name,
+  published: data.published_at,
+  assets: data.assets.map((asset: any) => ({
+    name: asset.name,
+    downloadUrl: asset.browser_download_url,
+    downloadCount: asset.download_count,
+    size: asset.size,
+  })),
+};
+
+const allResponse = await fetch(
+  'https://api.github.com/repos/admscentre/mortar-release/releases',
+  {
+    headers: {
+      Authorization: `Bearer ${READONLY_ACCESS_API_TOKEN}`,
+    },
+  }
+);
+const allData = await allResponse.json();
+const allReleases: Release[] = allData.map((release: any) => ({
+  tag: release.tag_name,
+  name: release.name,
+  published: release.published_at,
+  assets: release.assets.map((asset: any) => ({
+    name: asset.name,
+    downloadUrl: asset.browser_download_url,
+    downloadCount: asset.download_count,
+    size: asset.size,
+  })),
+}));
+---
+
+<MainLayout class='p-8'>
+  <div
+    class='mx-auto w-fit bg-black/10 p-8 rounded shadow-md shadow-zinc-700 backdrop-blur-md'
+  >
+    <h1>Download Mortar</h1>
+    <div class='flex flex-col gap-4 p-4'>
+      <LatestDownload release={latestRelease} latest client:only />
+    </div>
+    <details class='flex flex-col'>
+      <summary
+        class='cursor-pointer text-lg font-semibold text-accent-600 hover:text-accent-800 transition-colors duration-300'
+      >
+        All Versions
+      </summary>
+      {
+        allReleases.map((release) => (
+          <DownloadSelection
+            release={release}
+            latest={release.tag === latestRelease.tag}
+            client:only
+          />
+        ))
+      }
+    </details>
+  </div>
+</MainLayout>
