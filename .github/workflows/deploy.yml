@@ -16,6 +16,9 @@ permissions:
 
 jobs:
   build:
+    env:
+      PUBLIC_GITHUB_API_READONLY_TOKEN:
+        ${{ secrets.PUBLIC_GITHUB_API_READONLY_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
@@ -33,9 +36,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    env:
-      PUBLIC_GITHUB_API_READONLY_TOKEN:
-        ${{ secrets.PUBLIC_GITHUB_API_READONLY_TOKEN }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
