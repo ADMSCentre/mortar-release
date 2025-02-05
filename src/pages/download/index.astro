@@ -18,13 +18,14 @@ const latestRelease: Release = {
   tag: data.tag_name,
   name: data.name,
   published: data.published_at,
-  assets: data.assets.map((asset: any) => ({
+  assets: data.assets?.map((asset: any) => ({
     name: asset.name,
     downloadUrl: asset.browser_download_url,
     downloadCount: asset.download_count,
     size: asset.size,
   })),
 };
+console.log('Fetch completed');
 
 const allResponse = await fetch(
   'https://api.github.com/repos/admscentre/mortar-release/releases',
@@ -39,7 +40,7 @@ const allReleases: Release[] = allData.map((release: any) => ({
   tag: release.tag_name,
   name: release.name,
   published: release.published_at,
-  assets: release.assets.map((asset: any) => ({
+  assets: release.assets?.map((asset: any) => ({
     name: asset.name,
     downloadUrl: asset.browser_download_url,
     downloadCount: asset.download_count,
