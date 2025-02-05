@@ -5,6 +5,8 @@ import LatestDownload from './latest-download.svelte';
 const READONLY_ACCESS_API_TOKEN = import.meta.env
   .PUBLIC_GITHUB_API_READONLY_TOKEN;
 
+console.log('Fetching data using token:', READONLY_ACCESS_API_TOKEN);
+
 const latestResponse = await fetch(
   'https://api.github.com/repos/admscentre/mortar-release/releases/latest',
   {
@@ -36,7 +38,7 @@ const allResponse = await fetch(
   }
 );
 const allData = await allResponse.json();
-const allReleases: Release[] = allData.map((release: any) => ({
+const allReleases: Release[] = allData?.map((release: any) => ({
   tag: release.tag_name,
   name: release.name,
   published: release.published_at,
