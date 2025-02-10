@@ -67,9 +67,12 @@
   });
 
   const orderLeafFirst = (a: TreeNode, b: TreeNode) => {
-    if (Object.keys(a.children).length === 0) return 1;
-    if (Object.keys(b.children).length === 0) return -1;
-    return 0;
+    const aChildren = Object.keys(a.children).length;
+    const bChildren = Object.keys(b.children).length;
+    if (aChildren !== bChildren) {
+      return aChildren - bChildren;
+    }
+    return a.title.localeCompare(b.title);
   };
 
   console.log({ root });

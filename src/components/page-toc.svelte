@@ -10,7 +10,7 @@
   } = $props();
 </script>
 
-<div class="sticky min-w-56 top-18 flex flex-col gap-2">
+<div class="sticky min-w-64 top-18 flex flex-col gap-2">
   <div class="font-semibold text-lg">On this page</div>
   <hr />
   <ol class="pl-0 list-none text-sm leading-8">
