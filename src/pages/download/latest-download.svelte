@@ -120,16 +120,3 @@
     {/if}
   </div>
 </div>
-
-<style>
-  @reference "@styles/global.css";
-  .download-btn {
-    @apply text-white text-sm font-semibold py-2 px-4 border rounded text-center;
-    &:not(.main) {
-      @apply bg-black text-white hover:bg-zinc-600 border-zinc-800;
-    }
-    &.main {
-      @apply bg-gradient-to-br from-accent-400 to-accent-600 hover:from-accent-500 hover:to-accent-700 border-accent-500;
-    }
-  }
-</style>

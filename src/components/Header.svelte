@@ -4,11 +4,11 @@
 
   const navOptions = [
     {
-      href: withBase('download'),
+      href: withBase('download/'),
       content: 'Download',
     },
     {
-      href: withBase('docs/user-guide'),
+      href: withBase('docs/user-guide/'),
       content: 'User Guide',
     },
   ];

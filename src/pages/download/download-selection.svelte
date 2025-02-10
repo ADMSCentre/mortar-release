@@ -51,7 +51,7 @@
   </div>
   <p class="text-sm text-zinc-400 mb-4">{publishedDate}</p>
   <h3 class="text-xl font-semibold mb-2">Assets</h3>
-  <table class="min-w-full bg-black">
+  <table class="min-w-full bg-black/10">
     <thead>
       <tr>
         <th class="py-2 px-4 border-b">Platform</th>

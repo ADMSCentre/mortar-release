@@ -8,33 +8,14 @@ import '../styles/global.css';
 
 import AppHeader from '../components/header.svelte';
 import background from '../assets/background.svg';
-import DocsSidebar from '../components/docs-sidebar.svelte';
-import PageToc from '../components/page-toc.svelte';
 
 import { twMerge } from 'tailwind-merge';
 import { withBase } from '@utils/path';
-import type { MarkdownInstance, UserGuideFrontMatter } from 'types';
 
 type Props = {
   class?: string;
-  headings?: {
-    depth: number;
-    text: string;
-    slug: string;
-  }[];
 };
-
-const files = Object.values(
-  import.meta.glob<MarkdownInstance<UserGuideFrontMatter>>(
-    '../pages/docs/user-guide/**/*.md',
-    {
-      eager: true,
-    }
-  )
-);
-
-const { class: className = '', headings } = Astro.props;
-console.log('Headings:', headings);
+const { class: className = '' } = Astro.props;
 ---
 
 <!doctype html>
@@ -46,19 +27,15 @@ console.log('Headings:', headings);
     <meta name='generator' content={Astro.generator} />
     <title>Mortar</title>
   </head>
-  <body class='min-h-screen bg-black flex flex-col text-white h-fit'>
+  <body class='min-h-screen bg-black flex flex-col text-white'>
     <AppHeader />
     <main
       class={twMerge(
-        'p-4 leading-loose flex-1 flex gap-12 items-start justify-start',
+        'p-4 leading-loose flex-1 flex gap-4 items-start justify-start',
         className
       )}
     >
-      <DocsSidebar markdownFiles={files} client:only />
-      <div class='p-4 backdrop-blur-sm rounded size-full leading-10'>
-        <slot />
-      </div>
-      <PageToc headings={headings} />
+      <slot />
     </main>
     <img
       class='fixed top-0 left-0 w-full h-full bg-white/5 -z-10 blur-[100px] pointer-events-none brightness-150'
