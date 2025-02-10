@@ -12,6 +12,7 @@
   // Get the current page URL
   const currentUrl = new URL(window.location.href);
   const isDoc = currentUrl.pathname.includes('/docs/');
+  const BASE_URL = import.meta.env.BASE_URL;
 
   const getEndpoint = (url?: string) => {
     if (!url) return '';
@@ -36,8 +37,9 @@
 
   markdownFiles.forEach(({ frontmatter, url }) => {
     if (!url) return;
-    console.log({ frontmatter, url });
-    const parts = url.split('/').slice(1);
+    // Replace base URL to get the relative path
+    url = url.replace(BASE_URL, '');
+    const parts = url.split('/');
     let current = root;
     parts.forEach((part) => {
       if (!current.children) {
