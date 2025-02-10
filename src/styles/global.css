@@ -20,7 +20,6 @@
 }
 
 @layer base {
-  html,
   body {
     @apply !h-fit max-w-screen overflow-x-hidden;
   }
