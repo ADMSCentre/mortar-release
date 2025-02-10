@@ -23,6 +23,13 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+
+      - name: Clean up the docs folder
+        run: rm -rf src/pages/docs
+
+      - name: Copy documentation files
+        run: cp -r docs/* src/pages/docs
+
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         # with:
