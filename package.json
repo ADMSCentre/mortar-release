@@ -1,9 +1,9 @@
 {
-  "name": "",
+  "name": "mortar-release-site",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --config astro.dev.config.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
