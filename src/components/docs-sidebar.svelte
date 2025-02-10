@@ -86,7 +86,7 @@
       <span>{node.title}</span>
     {/if}
     {#if node.children}
-      <div class="ml-2">
+      <div style="margin-left: 1rem;">
         {#each Object.values(node.children) as child}
           {@render nodeRenderer(child)}
         {/each}
