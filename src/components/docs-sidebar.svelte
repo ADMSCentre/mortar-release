@@ -39,8 +39,13 @@
     if (!url) return;
     // Replace base URL to get the relative path
     url = url.replace(BASE_URL, '');
-    const parts = url.split('/');
+    const parts = url.split('/').filter((p) => p); // Remove empty parts
     let current = root;
+    console.log({
+      frontmatter,
+      url,
+      parts,
+    });
     parts.forEach((part) => {
       if (!current.children) {
         current.children = {};
