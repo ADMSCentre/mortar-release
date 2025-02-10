@@ -5,12 +5,13 @@
 
   const {
     markdownFiles,
+    currentPath,
   }: {
+    currentPath: string;
     markdownFiles: MarkdownInstance<UserGuideFrontMatter>[];
   } = $props();
 
   // Get the current page URL
-  const currentUrl = new URL(window.location.href);
   const BASE_URL = import.meta.env.BASE_URL;
 
   const getEndpoint = (url?: string) => {
@@ -75,7 +76,12 @@
     return a.title.localeCompare(b.title);
   };
 
-  console.log({ root });
+  const pathsEqual = (a: string, b: string) => {
+    // Compare the paths without the trailing and leading slashes
+    return a.replace(/(^\/|\/$)/g, '') === b.replace(/(^\/|\/$)/g, '');
+  };
+
+  console.log({ root, currentPath });
 </script>
 
 {#snippet nodeRenderer(node: TreeNode)}
@@ -85,7 +91,7 @@
         href={withBase(node.url)}
         class={twMerge(
           'hover:underline text-white',
-          node.url === currentUrl.pathname ? 'font-bold' : ''
+          pathsEqual(node.url, currentPath) ? 'font-bold' : ''
         )}
       >
         {node.title}
