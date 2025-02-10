@@ -11,7 +11,6 @@
 
   // Get the current page URL
   const currentUrl = new URL(window.location.href);
-  const isDoc = currentUrl.pathname.includes('/docs/');
   const BASE_URL = import.meta.env.BASE_URL;
 
   const getEndpoint = (url?: string) => {
@@ -101,15 +100,13 @@
   </div>
 {/snippet}
 
-{#if isDoc}
-  <div class="flex sticky top-18 flex-col gap-2 min-w-64 rounded p-2">
-    <div class="font-semibold text-lg">All Guides</div>
-    <hr />
+<div class="flex sticky top-18 flex-col gap-2 min-w-64 rounded p-2">
+  <div class="font-semibold text-lg">All Guides</div>
+  <hr />
 
-    <div class="text-sm leading-8">
-      {#each Object.values(root?.children['docs']?.children || {}) as node}
-        {@render nodeRenderer(node)}
-      {/each}
-    </div>
+  <div class="text-sm leading-8">
+    {#each Object.values(root?.children['docs']?.children || {}) as node}
+      {@render nodeRenderer(node)}
+    {/each}
   </div>
-{/if}
+</div>
