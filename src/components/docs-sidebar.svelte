@@ -67,6 +67,12 @@
     }
   });
 
+  const orderLeafFirst = (a: TreeNode, b: TreeNode) => {
+    if (Object.keys(a.children).length === 0) return 1;
+    if (Object.keys(b.children).length === 0) return -1;
+    return 0;
+  };
+
   console.log({ root });
 </script>
 
@@ -87,7 +93,7 @@
     {/if}
     {#if node.children}
       <div style="margin-left: 1rem;">
-        {#each Object.values(node.children) as child}
+        {#each Object.values(node.children).toSorted(orderLeafFirst) as child}
           {@render nodeRenderer(child)}
         {/each}
       </div>
@@ -96,7 +102,7 @@
 {/snippet}
 
 {#if isDoc}
-  <div class="flex sticky top-18 flex-col gap-2 min-w-56 rounded p-2">
+  <div class="flex sticky top-18 flex-col gap-2 min-w-64 rounded p-2">
     <div class="font-semibold text-lg">All Guides</div>
     <hr />
 
