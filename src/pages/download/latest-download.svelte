@@ -98,7 +98,7 @@
         })}
       {/each}
     {/if}
-    {#if macArm64Assets.length > 0}
+    <!-- {#if macArm64Assets.length > 0}
       {#each macArm64Assets as asset}
         {@render downloadButton({
           downloadUrl: asset.downloadUrl,
@@ -107,7 +107,7 @@
           arch: 'arm64',
         })}
       {/each}
-    {/if}
+    {/if} -->
     {#if linuxAssets.length > 0}
       {#each linuxAssets as asset}
         {@render downloadButton({
@@ -120,3 +120,11 @@
     {/if}
   </div>
 </div>
+
+<style>
+  .version-tag {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+</style>

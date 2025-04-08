@@ -8,19 +8,30 @@ const READONLY_ACCESS_API_TOKEN = import.meta.env
 
 console.log('Fetching data using token:', READONLY_ACCESS_API_TOKEN);
 
-const latestResponse = await fetch(
-  'https://api.github.com/repos/admscentre/mortar-release/releases/latest',
-  {
-    headers: {
-      Authorization: `Bearer ${READONLY_ACCESS_API_TOKEN}`,
-    },
-  }
-);
-const data = await latestResponse.json();
+const BASE_URL = 'https://api.github.com/repos/admscentre/mortar-release';
+const RELEASES_URL = `${BASE_URL}/releases`;
+
+let latestResponse = await fetch(`${RELEASES_URL}/latest`, {
+  headers: {
+    Authorization: `Bearer ${READONLY_ACCESS_API_TOKEN}`,
+  },
+});
+let data = await latestResponse.json();
+
+// If not found, try to fetch without the token
+if (!Array.isArray(data) || data.length === 0) {
+  console.log('No data found for latest release, trying without token...');
+  latestResponse = await fetch(`${RELEASES_URL}/latest`);
+  data = await latestResponse.json();
+}
+
+console.log('Fetch completed', data);
+
 const latestRelease: Release = {
   tag: data.tag_name,
   name: data.name,
   published: data.published_at,
+  url: data.html_url,
   assets: data.assets?.map((asset: any) => ({
     name: asset.name,
     downloadUrl: asset.browser_download_url,
@@ -28,21 +39,26 @@ const latestRelease: Release = {
     size: asset.size,
   })),
 };
-console.log('Fetch completed');
 
-const allResponse = await fetch(
-  'https://api.github.com/repos/admscentre/mortar-release/releases',
-  {
-    headers: {
-      Authorization: `Bearer ${READONLY_ACCESS_API_TOKEN}`,
-    },
-  }
-);
-const allData = await allResponse.json();
+let allResponse = await fetch(RELEASES_URL, {
+  headers: {
+    Authorization: `Bearer ${READONLY_ACCESS_API_TOKEN}`,
+  },
+});
+let allData = await allResponse.json();
+
+// If not found, try to fetch without the token
+if (!Array.isArray(allData) || allData.length === 0) {
+  console.log('No data found, trying without token...');
+  allResponse = await fetch(RELEASES_URL);
+  allData = await allResponse.json();
+}
+
 const allReleases: Release[] = allData?.map((release: any) => ({
   tag: release.tag_name,
   name: release.name,
   published: release.published_at,
+  url: release.html_url,
   assets: release.assets?.map((asset: any) => ({
     name: asset.name,
     downloadUrl: asset.browser_download_url,
@@ -56,7 +72,16 @@ const allReleases: Release[] = allData?.map((release: any) => ({
   <div
     class='mx-auto w-fit flex flex-col gap-4 bg-black/10 p-8 rounded shadow-md shadow-zinc-700 backdrop-blur-md'
   >
-    <h1>Download Mortar</h1>
+    <div class='flex gap-2 w-full'>
+      <h1>Download Mortar</h1>
+      <a
+        href={latestRelease.url}
+        target='_blank'
+        class='text-sm text-accent-500 my-4 px-2 py-1 size-fit'
+      >
+        {latestRelease.tag}
+      </a>
+    </div>
     <div class='flex flex-col gap-4'>
       <LatestDownload release={latestRelease} latest client:only />
     </div>

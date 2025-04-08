@@ -48,12 +48,12 @@
     }
   }
   .download-btn {
-    @apply text-white text-sm font-semibold py-2 px-4 border rounded text-center;
+    @apply text-white text-sm font-semibold py-2 px-4 border rounded-lg text-center;
     &:not(.main) {
       @apply bg-black text-white hover:bg-zinc-900 border-zinc-800;
     }
     &.main {
-      @apply bg-gradient-to-br from-accent-400 to-accent-600 hover:from-accent-500 hover:to-accent-700 border-accent-500;
+      @apply bg-gradient-to-br text-white from-accent-400 to-accent-600 hover:from-accent-500 hover:to-accent-700 border-accent-500;
     }
   }
 }
