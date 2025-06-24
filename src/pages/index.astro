@@ -12,8 +12,7 @@ import { withBase } from '@utils/path';
   <div class='px-32 w-fit flex gap-36 items-center'>
     <div class='flex flex-col gap-8 max-w-[500px]'>
       <span
-        class='text-6xl font-medium leading-tight bg-clip-text text-transparent bg-gradient-to-br from-accent-300 to-accent-500 drop-shadow-lg shadow-accent-500'
-        style='text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.55);'
+        class='text-6xl font-medium leading-tight bg-clip-text text-accent-500'
       >
         Empowering Welfare Rights Advocates
       </span>
@@ -25,20 +24,16 @@ import { withBase } from '@utils/path';
       </p>
       <a
         href={withBase('/download')}
-        class='text-white text-xl font-semibold py-3 border rounded-xl text-center bg-gradient-to-br from-accent-400 to-accent-600 hover:from-accent-500 hover:to-accent-700 border-accent-500'
+        class='text-white text-xl font-semibold py-3 border rounded-xl text-center bg-gradient-to-br bg-accent-500 border-accent-500'
       >
         Download Mortar
       </a>
     </div>
     <div class='rounded-2xl relative h-fit'>
-      <div
-        class='absolute top-0 rounded-xl left-0 size-full -z-10 bg-gradient-to-br from-accent-300/25 to-accent-500'
-      >
-      </div>
       <Image
         src={demoPhoto}
         alt='Mortar Demo'
-        class='object-cover rounded-xl shadow-2xl shadow-accent-400 border-2 border-transparent'
+        class='object-cover rounded-xl border-2 border-transparent'
       />
     </div>
   </div>

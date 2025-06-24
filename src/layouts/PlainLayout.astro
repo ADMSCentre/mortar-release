@@ -24,10 +24,14 @@ const { class: className = '' } = Astro.props;
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' type='image/svg+xml' href={withBase('/favicon.svg')} />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'
+      rel='stylesheet'
+    />
     <meta name='generator' content={Astro.generator} />
     <title>Mortar</title>
   </head>
-  <body class='min-h-screen bg-black flex flex-col text-white'>
+  <body class='min-h-screen bg-back-primary flex flex-col text-white'>
     <AppHeader />
     <main
       class={twMerge(
@@ -37,12 +41,6 @@ const { class: className = '' } = Astro.props;
     >
       <slot />
     </main>
-    <img
-      class='fixed top-0 left-0 w-full h-full bg-white/5 -z-10 blur-[100px] pointer-events-none brightness-150'
-      src={background.src}
-      alt=''
-      fetchpriority='high'
-    />
   </body>
 </html>
 

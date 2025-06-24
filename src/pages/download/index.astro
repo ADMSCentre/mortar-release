@@ -3,6 +3,9 @@ import Layout from '@layouts/PlainLayout.astro';
 import DownloadSelection from './download-selection.svelte';
 import LatestDownload from './latest-download.svelte';
 import { withBase } from '@utils/path';
+import logoPhoto from 'assets/logo.svg';
+import { Image } from 'astro:assets';
+
 const READONLY_ACCESS_API_TOKEN = import.meta.env
   .PUBLIC_GITHUB_API_READONLY_TOKEN;
 
@@ -70,10 +73,17 @@ const allReleases: Release[] = allData?.map((release: any) => ({
 
 <Layout class='p-8'>
   <div
-    class='mx-auto w-fit flex flex-col gap-4 bg-black/10 p-8 rounded shadow-md shadow-zinc-700 backdrop-blur-md'
+    class='mx-auto w-fit flex flex-col gap-4 bg-black/10 p-8 rounded backdrop-blur-md'
   >
     <div class='flex gap-2 w-full'>
-      <h1>Download Mortar</h1>
+      <h1 class='flex gap-4 items-center'>
+        <Image
+          src={logoPhoto}
+          alt='Mortar Demo'
+          class='object-cover size-16 rounded-xl border-2 border-transparent'
+        />
+        <span>Download Mortar</span>
+      </h1>
       <a
         href={latestRelease.url}
         target='_blank'
